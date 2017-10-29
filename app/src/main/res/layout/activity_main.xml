@@ -47,6 +47,38 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textColor="#ffd966"
+                android:text="路由器登陆账号："/>
+            <EditText
+                android:id="@+id/loginRouteUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="例：root"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textColor="#ffd966"
+                android:text="路由器登陆密码："/>
+            <EditText
+                android:id="@+id/loginRoutePassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="例：admin"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="100dp"
             android:gravity="center">
             <Button
@@ -59,12 +91,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="100dp"
             android:gravity="center">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="请先连接路由器无线wifi，然后点击一件连接。程序目前经测试，南京部分路由器正常使用，若您的路由器不被支持或手机无法使用，请联系email：1103810226@qq.com"/>
+                android:text="      请先连接路由器无线wifi，然后点击一键连接。程序目前经测试，南京部分路由器正常使用，若您的路由器不被支持或手机无法使用，请联系email：1103810226@qq.com"/>
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

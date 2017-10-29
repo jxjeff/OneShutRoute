@@ -21,6 +21,8 @@ import okhttp3.Response;
 
 import static com.example.xuanyonghao.oneshutroute.common.Config.LINK_CONFIG.DEFAULT_VALUE;
 import static com.example.xuanyonghao.oneshutroute.common.Config.LINK_CONFIG.HOST_KEY;
+import static com.example.xuanyonghao.oneshutroute.common.Config.LINK_CONFIG.LOGIN_ROUTE_PASSWORD_KEY;
+import static com.example.xuanyonghao.oneshutroute.common.Config.LINK_CONFIG.LOGIN_ROUTE_USERNAME_KEY;
 import static com.example.xuanyonghao.oneshutroute.common.Config.LINK_CONFIG.USERNAME_KEY;
 import static com.example.xuanyonghao.oneshutroute.common.Config.MAIN_HANDLE.HANDLE_HOST_USERNAME_RECEIVE;
 import static com.example.xuanyonghao.oneshutroute.common.Config.MAIN_HANDLE.HANDLE_MESSAGE_KEY;
@@ -34,12 +36,14 @@ import static com.example.xuanyonghao.oneshutroute.common.Config.MAIN_HANDLE.HAN
 public class MainActivityHandle extends Handler {
 
     private Context mContext;
-    private String host;
-    private String username;
+    private String host = null;
+    private String username = null;
+    private String routeUsername = null;
+    private String routePassword = null;
     @Override
     public void handleMessage(Message msg) {
         switch (msg.what) {
-            case HANDLE_RECEIVED_SMS_CODE:
+            case HANDLE_RECEIVED_SMS_CODE://接收短信
                 String content = msg.getData().getString(HANDLE_MESSAGE_KEY);
                 String code = parser(content);
                 if (code != null) {
@@ -49,18 +53,30 @@ public class MainActivityHandle extends Handler {
                     Toast.makeText(mContext,"程序匹配密码出错，请联系程序猿！",Toast.LENGTH_LONG).show();
                 }
                 break;
-            case HANDLE_HOST_USERNAME_RECEIVE:
+            case HANDLE_HOST_USERNAME_RECEIVE://接收配置信息
                 Bundle data = msg.getData();
                 host = data.getString(HOST_KEY,DEFAULT_VALUE);
                 username = data.getString(USERNAME_KEY,DEFAULT_VALUE);
+                routeUsername = data.getString(LOGIN_ROUTE_USERNAME_KEY,DEFAULT_VALUE);
+                routePassword = data.getString(LOGIN_ROUTE_PASSWORD_KEY,DEFAULT_VALUE);
+                Log.d("info",host+"     "+username+"     "+routeUsername+"     "+routePassword);
                 break;
         }
     }
 
+    /**
+     * 初始化handle
+     * @param mContext
+     */
     public void init(Context mContext) {
         this.mContext = mContext;
     }
 
+    /**
+     * 解析出天翼宽带密码
+     * @param content
+     * @return
+     */
     private String parser(String content) {
         String reg = "[0-9]{6}";
         Pattern pattern = Pattern.compile(reg);
@@ -72,6 +88,10 @@ public class MainActivityHandle extends Handler {
         }
     }
 
+    /**
+     * 连接路由器配置连接
+     * @param code
+     */
     private void link (final String code){
         new Thread(new Runnable() {
             @Override
@@ -82,8 +102,8 @@ public class MainActivityHandle extends Handler {
                 Toast.makeText(mContext,"正在登陆后台！-----",Toast.LENGTH_SHORT).show();
                 String url = host+"/cgi-bin/luci";//登陆url
                 RequestBody requestBody = new FormBody.Builder()
-                        .add("username1","root")
-                        .add("password1","admin")
+                        .add("username1",routeUsername)
+                        .add("password1",routePassword)
                         .build();
                 Request request = new Request.Builder()
                         .url(url)

@@ -21,6 +21,8 @@ public class Config {
         String CONFIG_FILE_NAME = "config";
         String HOST_KEY = "host";
         String USERNAME_KEY = "username";
+        String LOGIN_ROUTE_USERNAME_KEY = "routeUsername";
+        String LOGIN_ROUTE_PASSWORD_KEY = "routePassword";
         String DEFAULT_VALUE = "";
     }
 }
