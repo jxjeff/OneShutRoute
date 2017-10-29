@@ -62,7 +62,7 @@ public class MainActivityHandle extends Handler {
     }
 
     private String parser(String content) {
-        String reg = "[0-9]+";
+        String reg = "[0-9]{6}";
         Pattern pattern = Pattern.compile(reg);
         Matcher matcher = pattern.matcher(content);
         if (matcher.find()) {

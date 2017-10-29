@@ -7,7 +7,7 @@ package com.example.xuanyonghao.oneshutroute.common;
 public class Config {
     public interface SMS_CONFIG {
         String SEND_PHONE_NUMBER = "10000";
-        String SEND_CONTENT = "tykdmm";
+        String SEND_CONTENT = "xykdmm";
 //        String SEND_PHONE_NUMBER = "10010";
 //        String SEND_CONTENT = "cxye";
         String SENT_SMS_ACTION = "SENT_SMS_ACTION";

@@ -64,7 +64,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="程序目前经测试，南京部分路由器正常使用，若您的路由器不被支持或手机无法使用，请联系email：1103810226@qq.com"/>
+                android:text="请先连接路由器无线wifi，然后点击一件连接。程序目前经测试，南京部分路由器正常使用，若您的路由器不被支持或手机无法使用，请联系email：1103810226@qq.com"/>
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
