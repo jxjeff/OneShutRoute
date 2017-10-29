@@ -100,7 +100,7 @@ public class MainActivityHandle extends Handler {
                 OkHttpClient okHttpClient = new OkHttpClient.Builder()
                         .build();
                 Toast.makeText(mContext,"正在登陆后台！-----",Toast.LENGTH_SHORT).show();
-                String url = host+"/cgi-bin/luci";//登陆url
+                String url = "http://"+host+"/cgi-bin/luci";//登陆url
                 RequestBody requestBody = new FormBody.Builder()
                         .add("username1",routeUsername)
                         .add("password1",routePassword)
@@ -171,6 +171,6 @@ public class MainActivityHandle extends Handler {
                 }
 
             }
-        });
+        }).start();
     }
 }
