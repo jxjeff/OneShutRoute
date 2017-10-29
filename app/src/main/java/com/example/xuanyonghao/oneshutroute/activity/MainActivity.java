@@ -59,17 +59,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static MainActivityHandle mainActivityHandle =  null;
 
-    private static String[] PERMISSION1= {Manifest.permission.INTERNET};
-    private static String[] PERMISSION2= {Manifest.permission.SEND_SMS};
-    private static String[] PERMISSION3= {Manifest.permission.RECEIVE_SMS};
-    private static String[] PERMISSION4= {Manifest.permission.READ_SMS};
+    private static String[] PERMISSION= {
+            Manifest.permission.SEND_SMS,
+            Manifest.permission.RECEIVE_SMS,
+            Manifest.permission.READ_SMS
+    };
 
     /**
      * 判断是否拥有权限
      * @param permission
      * @return
      */
-    private boolean islacksOfPermission(String permission){
+    private boolean hasNotPermission(String permission){
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
             return ContextCompat.checkSelfPermission(this, permission) ==
                     PackageManager.PERMISSION_DENIED;
@@ -81,17 +82,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 检查app需要权限
      */
     private void checkPermission() {
-        if(islacksOfPermission(PERMISSION1[0])){
-            ActivityCompat.requestPermissions(this,PERMISSION1,0x12);
-        }
-        if(islacksOfPermission(PERMISSION2[0])){
-            ActivityCompat.requestPermissions(this,PERMISSION2,0x13);
-        }
-        if(islacksOfPermission(PERMISSION3[0])){
-            ActivityCompat.requestPermissions(this,PERMISSION3,0x14);
-        }
-        if(islacksOfPermission(PERMISSION4[0])){
-            ActivityCompat.requestPermissions(this,PERMISSION4,0x15);
+        if(hasNotPermission(PERMISSION[0])){
+            ActivityCompat.requestPermissions(this, PERMISSION, 0x12);
         }
     }
     @Override
